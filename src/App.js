@@ -2,6 +2,8 @@ import './App.css';
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import { handleInitialData } from "./actions/shared";
+import Dashboard from "./components/Dashboard";
+import LoginPage from "./components/LoginPage";
 
 const App = (props) => {
   useEffect(() => {
@@ -12,13 +14,15 @@ const App = (props) => {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          My lovely App
-        </p>
-      </header>
+      {props.loggedIn === true ? <Dashboard /> : <LoginPage />}
     </div>
   );
 }
 
-export default connect()(App);
+const mapStateToProps = ({ authedUser }) => (
+    {
+      loggedIn: authedUser !== null,
+    }
+)
+
+export default connect(mapStateToProps)(App);

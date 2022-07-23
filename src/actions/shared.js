@@ -13,9 +13,10 @@ export function handleInitialData() {
 }
 
 export function login(id) {
-  return (dispatch) => {
-    dispatch(setAuthedUser(id));
-  }
+  console.log("Logging in: ", id);
+   return (dispatch) => {
+     dispatch(setAuthedUser(id));
+   }
 }
 
 export function logout() {
