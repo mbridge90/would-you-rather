@@ -1,5 +1,12 @@
+import Nav from "./Nav";
+
 const NewQuestion = (props) => {
-  return <h3>New Question placeholder</h3>
+  return (
+      <div>
+        <Nav />
+        <h3>New Question placeholder</h3>
+      </div>
+  )
 }
 
 export default NewQuestion;

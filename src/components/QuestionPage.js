@@ -1,5 +1,6 @@
 import {connect} from "react-redux";
 import { useParams } from "react-router-dom";
+import Nav from "./Nav";
 
 const withRouter = (Component) => {
   const ComponentWithRouterProp = (props) => {
@@ -11,7 +12,12 @@ const withRouter = (Component) => {
 
 const QuestionPage = (props) => {
   console.log(props);
-  return <h3>Placeholder Question Page</h3>
+  return (
+      <div>
+        <Nav />
+        <h3>Placeholder Question Page</h3>
+      </div>
+  )
 }
 
 const mapStateToProps = ({ questions, users, authedUser }, props) => {

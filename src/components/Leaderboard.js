@@ -1,9 +1,11 @@
 import {connect} from "react-redux";
 import User from "./User";
+import Nav from "./Nav";
 
 const Leaderboard = ({ users }) => {
   return (
       <div className="leaderboard">
+        <Nav />
         <h3>Leaderboard</h3>
         <ol>
           {users.map((user) => (
