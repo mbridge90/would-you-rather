@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import {useEffect, useState} from "react";
 import {handleInitialData} from "../actions/shared";
 import QuestionList from "./QuestionList";
+import Nav from "./Nav";
 
 const Dashboard = (props) => {
   const[viewingUnanswered, setViewingUnanswered] = useState(true);
@@ -15,6 +16,7 @@ const Dashboard = (props) => {
   console.log(props)
   return (
       <div>
+        <Nav />
         <h3>Would You Rather...</h3>
         {viewingUnanswered ?
             <QuestionList questions={props.unAnsweredQuestions}/>

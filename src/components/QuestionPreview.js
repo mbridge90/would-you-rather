@@ -1,10 +1,12 @@
+import { Link } from "react-router-dom";
+
 const QuestionPreview = ({ question }) => {
   return (
-      <div>
+      <Link to={`/questions/${question.id}`} className="question=preview">
         <p>{question.optionOne.text}</p>
         <p>OR</p>
         <p>{question.optionTwo.text}</p>
-      </div>
+      </Link>
   )
 }
 
