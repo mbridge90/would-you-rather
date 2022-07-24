@@ -2,6 +2,7 @@ import {connect} from "react-redux";
 import { useParams } from "react-router-dom";
 import Nav from "./Nav";
 import {useState} from "react";
+import { handleVoteOnQuestion } from "../actions/questions";
 
 const withRouter = (Component) => {
   const ComponentWithRouterProp = (props) => {
@@ -11,7 +12,7 @@ const withRouter = (Component) => {
   return ComponentWithRouterProp
 }
 
-const QuestionPage = ({ dispatch, id, question, avatarURL, answer}) => {
+const QuestionPage = ({ dispatch, authedUser, id, question, avatarURL, answer}) => {
   const [answered, setAnswered] = useState(answer !== null);
   const [selectedAnswer, setSelectedAnswer] = useState(answer)
 
@@ -21,6 +22,11 @@ const QuestionPage = ({ dispatch, id, question, avatarURL, answer}) => {
   const formSubmit = (event) => {
     event.preventDefault();
     setAnswered(true);
+    dispatch(handleVoteOnQuestion({
+      authedUser,
+      qid: id,
+      answer: selectedAnswer
+    }))
   }
 
   return (
@@ -48,7 +54,7 @@ const QuestionPage = ({ dispatch, id, question, avatarURL, answer}) => {
                   checked={selectedAnswer === "optionTwo"}
                   onChange={()=>setSelectedAnswer("optionTwo")}
               />
-              {question.optionOne.text}
+              {question.optionTwo.text}
             </label>
           </div>
 
@@ -75,6 +81,7 @@ const mapStateToProps = ({ questions, users, authedUser }, props) => {
   }
 
   return {
+    authedUser,
     id: questionId,
     question,
     avatarURL ,
