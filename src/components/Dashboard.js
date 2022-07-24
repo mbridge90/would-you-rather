@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import {useEffect, useState} from "react";
 import {handleInitialData} from "../actions/shared";
+import QuestionList from "./QuestionList";
 
 const Dashboard = (props) => {
   const[viewingUnanswered, setViewingUnanswered] = useState(true);
@@ -14,37 +15,11 @@ const Dashboard = (props) => {
   console.log(props)
   return (
       <div>
-        {viewingUnanswered && (
-          <div>
-            <h3>Questions</h3>
-              <h2>Unanswered Questions</h2>
-              <ul>
-                {props.unAnsweredQuestions.map((question) => (
-                  <li key={question.id}>
-                    <div>
-                    Question id: {question.id}
-                    </div>
-                  </li>
-                  ))}
-              </ul>
-          </div>
-        )}
-
-        {!viewingUnanswered && (
-          <div>
-            <h2>Answered Questions</h2>
-            <ul>
-              {props.answeredQuestions.map((question) => (
-                <li key={question.id}>
-                  <div>
-                    Question id: {question.id}
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )
-
+        <h3>Would You Rather...</h3>
+        {viewingUnanswered ?
+            <QuestionList questions={props.unAnsweredQuestions}/>
+            :
+            <QuestionList questions={props.answeredQuestions}/>
         }
 
         <button onClick={() => setViewingUnanswered(!viewingUnanswered)}>
