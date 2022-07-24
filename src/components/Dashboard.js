@@ -14,32 +14,42 @@ const Dashboard = (props) => {
   console.log(props)
   return (
       <div>
-        <h3>Questions</h3>
-        <h2>Unanswered Questions</h2>
-        <ul>
-          {
-            props.unAnsweredQuestions.map((question) => (
-                <li key={question.id}>
-                  <div>
+        {viewingUnanswered && (
+          <div>
+            <h3>Questions</h3>
+              <h2>Unanswered Questions</h2>
+              <ul>
+                {props.unAnsweredQuestions.map((question) => (
+                  <li key={question.id}>
+                    <div>
                     Question id: {question.id}
-                  </div>
-                </li>
-            ))
-          }
-        </ul>
+                    </div>
+                  </li>
+                  ))}
+              </ul>
+          </div>
+        )}
 
-        <h2>Answered Questions</h2>
-        <ul>
-          {
-            props.answeredQuestions.map((question) => (
+        {!viewingUnanswered && (
+          <div>
+            <h2>Answered Questions</h2>
+            <ul>
+              {props.answeredQuestions.map((question) => (
                 <li key={question.id}>
                   <div>
                     Question id: {question.id}
                   </div>
                 </li>
-            ))
-          }
-        </ul>
+              ))}
+            </ul>
+          </div>
+        )
+
+        }
+
+        <button onClick={() => setViewingUnanswered(!viewingUnanswered)}>
+          View {viewingUnanswered ? "" : "un"}answered Questions
+        </button>
       </div>
   )
 }
