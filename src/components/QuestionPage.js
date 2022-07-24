@@ -10,21 +10,26 @@ const withRouter = (Component) => {
   return ComponentWithRouterProp
 }
 
-const QuestionPage = (props) => {
-  console.log(props);
+const QuestionPage = ({ id, question, avatarURL}) => {
   return (
       <div>
         <Nav />
-        <h3>Placeholder Question Page</h3>
+        <img src={avatarURL} />
+        <h3>Would you rather....</h3>
+        <p>{question.optionOne.text}</p>
+        <p>{question.optionTwo.text}</p>
       </div>
   )
 }
 
 const mapStateToProps = ({ questions, users, authedUser }, props) => {
   const questionId = props.router.params.id;
+  const question = questions[questionId];
+  const avatarURL = users[question.author].avatarURL
   return {
     id: questionId,
-    question: questions[questionId],
+    question,
+    avatarURL ,
     answer: questions[questionId].optionOne.votes.includes(authedUser) ? "optionOne" :
         questions[questionId].optionOne.votes.includes(authedUser) ? "optionTwo" : null
   }
