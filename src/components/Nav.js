@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { logout } from "../actions/shared";
+import {connect} from "react-redux";
 
-const Nav = () => {
+const Nav = ({ dispatch }) => {
   return (
       <nav className="nav-section">
         <ul>
@@ -13,9 +15,12 @@ const Nav = () => {
           <li>
             <Link to="/leaderboard">View Leaderboard</Link>
           </li>
+          <li>
+            <button onClick={()=>dispatch(logout())}>Logout</button>
+          </li>
         </ul>
       </nav>
   )
 }
 
-export default Nav;
+export default connect()(Nav);
