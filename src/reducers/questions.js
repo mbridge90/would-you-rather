@@ -21,11 +21,8 @@ export default function users(state = {}, action) {
     case SAVE_QUESTION:
       return {
         ...state,
-        [state.questions]: {
-          ...state.questions,
-          [action.question.id]: {...action.question }
+          [action.question.id]: {...action.question },
         }
-      }
     default:
       return state
   }

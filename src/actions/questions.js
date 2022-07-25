@@ -40,14 +40,5 @@ export function addNewQuestion(formattedQuestion) {
   }
 }
 
-export function handleSaveQuestion(question) {
-  console.log("In handleSaveQuestion")
-  return _saveQuestion(question).then((formattedQuestion)=>{
-    console.log(formattedQuestion);
-    return (dispatch) => dispatch(addNewQuestion(formattedQuestion))
-  }).catch((e) => {
-    console.warn("Error saving new question: ", e);
-    alert("There was an error saving your question. Please try again.")
-  })
-}
+
 

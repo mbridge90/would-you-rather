@@ -1,11 +1,13 @@
 import Nav from "./Nav";
 import { connect } from "react-redux";
 import { useState } from "react";
-import { handleSaveQuestion } from "../actions/questions"
+import { handleSaveQuestion } from "../actions/shared";
+import {useNavigate} from "react-router-dom";
 
 const NewQuestion = ({ dispatch, authedUser }) => {
   const [optionOne, setOptionOne] = useState("")
   const [optionTwo, setOptionTwo] = useState("")
+  const navigate = useNavigate();
 
   const handleChange = (e, setOptionFunction) => {
     const text = e.target.value;
@@ -14,17 +16,18 @@ const NewQuestion = ({ dispatch, authedUser }) => {
   };
 
   const handleSubmit = (e) => {
-    console.log("In handle submit")
     e.preventDefault();
 
     dispatch(handleSaveQuestion({
       author: authedUser,
       optionOneText: optionOne,
       optionTwoText: optionTwo,
-    }))
+    }));
 
     setOptionOne("");
     setOptionTwo("");
+
+    navigate("/");
   };
 
   return (
