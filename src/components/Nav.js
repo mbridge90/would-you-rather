@@ -2,10 +2,13 @@ import { Link } from "react-router-dom";
 import { logout } from "../actions/shared";
 import {connect} from "react-redux";
 
-const Nav = ({ dispatch }) => {
+const Nav = ({ authedUser, dispatch }) => {
   return (
       <nav className="nav-section">
         <ul>
+          <li>
+            <p>Logged in as: {authedUser}</p>
+          </li>
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -23,4 +26,10 @@ const Nav = ({ dispatch }) => {
   )
 }
 
-export default connect()(Nav);
+const mapStateToProps = ({ authedUser }) => {
+  return {
+    authedUser
+  }
+}
+
+export default connect(mapStateToProps)(Nav);
