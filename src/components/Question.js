@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {handleVoteOnQuestion} from "../actions/questions";
+import {handleVoteOnQuestion} from "../actions/shared";
 import Nav from "./Nav";
 import {connect} from "react-redux";
 

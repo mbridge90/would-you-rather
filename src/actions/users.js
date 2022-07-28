@@ -1,5 +1,6 @@
 export const RECEIVE_USERS = "RECEIVE_USERS";
 export const ADD_QUESTION_TO_USER = "ADD_QUESTION_TO_USER";
+export const ADD_VOTE_TO_USER = "ADD_VOTE_TO_USER"
 
 export function receiveUsers(users) {
   return {
@@ -13,5 +14,14 @@ export function addQuestionToUser(authedUser, qid) {
     type: ADD_QUESTION_TO_USER,
     authedUser,
     qid
+  }
+}
+
+export function addVoteToUser({ authedUser, qid, answer }) {
+  return {
+    type: ADD_VOTE_TO_USER,
+    authedUser,
+    qid,
+    answer
   }
 }

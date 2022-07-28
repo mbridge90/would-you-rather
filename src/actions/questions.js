@@ -1,5 +1,3 @@
-import { _saveQuestion, _saveQuestionAnswer } from "../utils/_DATA";
-
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
 export const VOTE_ON_QUESTION = "VOTE_ON_QUESTION";
 export const SAVE_QUESTION = "SAVE_QUESTION";
@@ -11,26 +9,13 @@ export function receiveQuestions(questions) {
   };
 }
 
-function voteOnQuestion({ authedUser, qid, answer }) {
+export function voteOnQuestion({ authedUser, qid, answer }) {
   return {
     type: VOTE_ON_QUESTION,
     authedUser,
     qid,
     answer
   };
-}
-
-export function handleVoteOnQuestion(info) {
-  return (dispatch) => {
-    dispatch(voteOnQuestion(info));
-
-    return _saveQuestionAnswer(info).catch((e) => {
-      console.warn("Error in _saveQuestionAnswer", e);
-      //TODO: ADD ACTION TO REMOVE AUTHEDUSER FROM VOTES
-      alert("There was an error saving your answer. Please try again.")
-        }
-    )
-  }
 }
 
 export function addNewQuestion(formattedQuestion) {

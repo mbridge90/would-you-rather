@@ -7,12 +7,6 @@ import Nav from "./Nav";
 const Dashboard = (props) => {
   const[viewingUnanswered, setViewingUnanswered] = useState(true);
 
-  useEffect(() => {
-        props.dispatch(handleInitialData());
-      },
-      []
-  )
-
   return (
       <div data-testid={'dashboard'}>
         <Nav />

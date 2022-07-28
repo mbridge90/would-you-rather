@@ -1,8 +1,8 @@
-import {addQuestionToUser, receiveUsers} from "./users";
-import {addNewQuestion, receiveQuestions} from "./questions";
+import {addQuestionToUser, receiveUsers, addVoteToUser} from "./users";
+import {addNewQuestion, receiveQuestions, voteOnQuestion} from "./questions";
 import { getInitialData } from "../utils/api";
 import { setAuthedUser } from "./authedUser";
-import {_saveQuestion} from "../utils/_DATA";
+import {_saveQuestion, _saveQuestionAnswer} from "../utils/_DATA";
 
 export function handleInitialData() {
   return (dispatch) => {
@@ -37,5 +37,19 @@ export function handleSaveQuestion(question) {
       console.warn("Error saving new question: ", e);
       alert("There was an error saving your question. Please try again.")
     })
+  }
+}
+
+export function handleVoteOnQuestion(info) {
+  return (dispatch) => {
+    dispatch(voteOnQuestion(info));
+    dispatch(addVoteToUser(info));
+
+    return _saveQuestionAnswer(info).catch((e) => {
+          console.warn("Error in _saveQuestionAnswer", e);
+          //TODO: ADD ACTION TO REMOVE AUTHEDUSER FROM VOTES
+          alert("There was an error saving your answer. Please try again.")
+        }
+    )
   }
 }
