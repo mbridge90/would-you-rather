@@ -8,12 +8,12 @@ const LoginPage = (props) => {
   const [selectedUser, setSelectedUser] = useState()
 
   return (
-      <div>
+      <div data-testid={'login-page'}>
         <Select
             options={props.users}
             onChange={e => setSelectedUser(e.value)}
         />
-        <button onClick={()=>props.dispatch(login(selectedUser))}>
+        <button onClick={()=>props.dispatch(login(selectedUser))} data-testid={'login-button'}>
           Login as selected User
         </button>
       </div>

@@ -1,4 +1,3 @@
-import './App.css';
 import { useEffect, Fragment } from "react";
 import { connect } from "react-redux";
 import { handleInitialData } from "./actions/shared";

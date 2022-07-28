@@ -13,9 +13,8 @@ const Dashboard = (props) => {
       []
   )
 
-  console.log(props)
   return (
-      <div>
+      <div data-testid={'dashboard'}>
         <Nav />
         <h3>Would You Rather...</h3>
         {viewingUnanswered ?
@@ -24,7 +23,7 @@ const Dashboard = (props) => {
             <QuestionList questions={props.answeredQuestions}/>
         }
 
-        <button onClick={() => setViewingUnanswered(!viewingUnanswered)}>
+        <button data-testid ={"toggle-button"} onClick={() => setViewingUnanswered(!viewingUnanswered)}>
           View {viewingUnanswered ? "" : "un"}answered Questions
         </button>
       </div>

@@ -3,9 +3,9 @@ import QuestionPreview from "./QuestionPreview";
 const QuestionList = ({ questions}) => {
   return (
       <div>
-        <ul>
+        <ul data-testid={'question-list'}>
           {questions.map((question) => (
-              <li key={question.id}>
+              <li data-testid={question.id} key={question.id}>
                 <QuestionPreview question={question}/>
               </li>
           ))}

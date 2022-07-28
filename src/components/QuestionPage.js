@@ -1,9 +1,6 @@
 import {connect} from "react-redux";
 import { useParams } from "react-router-dom";
-import Nav from "./Nav";
-import {useState} from "react";
-import { handleVoteOnQuestion } from "../actions/questions";
-import PageNotFound from "./404";
+import PageNotFound from "./PageNotFound";
 import Question from "./Question";
 
 const QuestionPage = ({ existingQuestionIds }) => {
@@ -13,7 +10,7 @@ const QuestionPage = ({ existingQuestionIds }) => {
   if (existingQuestionIds.includes(id)) {
     return <Question id={id} />
   } else {
-    return <PageNotFound />
+    return <PageNotFound existingQuestionsIds={existingQuestionIds} id={params.id}/>
   }
 }
 
